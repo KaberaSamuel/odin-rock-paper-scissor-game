@@ -15,7 +15,7 @@ const getHumanChoice = function () {
   let running = true;
   while (running) {
     let humanChoice = prompt(
-      "Make your choice among: 'rock', 'paper', 'scissors' "
+      `Make your choice among: 'rock', 'paper', 'scissors' `
     );
     humanChoice = humanChoice.toLowerCase();
     if (choices.includes(humanChoice)) {
@@ -42,14 +42,54 @@ Human: ${human}`);
       humanScores++;
     } else {
       console.log(`you lost, ${computer} beats ${human}`);
-      computer++;
+      computerScores++;
     }
   }
 
   console.log(`Scores[human: ${humanScores}, computer: ${computerScores}]`);
 };
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerchoice();
+// function for playing inside the game
+const playing = function () {
+  for (let i = 1; i < 6; i++) {
+    console.log(`Round ${i}`);
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerchoice();
+    playRound(computerSelection, humanSelection);
+    console.log();
+  }
 
-playRound(humanSelection, computerSelection);
+  if (humanScores === computerScores) {
+    console.log(`It's a draw, you both got equal scores!`);
+  } else {
+    if (humanScores > computerScores) {
+      console.log(
+        `You won the game, with ${
+          humanScores - computerScores
+        } mark(s) ahead of the computer`
+      );
+    } else {
+      console.log(
+        `You lost the game, with ${
+          computerScores - humanScores
+        } mark(s) behind the computer`
+      );
+    }
+  }
+};
+
+// function for the whole game
+const playGame = function () {
+  playing();
+
+  const userAnswer = prompt("do you still want to play ? yes or no");
+  if (userAnswer === "yes") {
+    console.log();
+    console.log("Starting again");
+    playing();
+  } else {
+    console.log("Thanks for playing");
+  }
+};
+
+playGame();
