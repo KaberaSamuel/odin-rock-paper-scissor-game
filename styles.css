@@ -1,0 +1,50 @@
+/* General Styles */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgba(17, 17, 90, 0.834);
+  color: white;
+  font-size: 0.8rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Top section */
+.top {
+  border: 1px solid lightgray;
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+}
+
+.top .items {
+  flex-grow: 2;
+}
+
+.top .box {
+  background-color: white;
+  color: rgba(17, 17, 90, 0.834);
+}
+
+/* Main Section */
+main {
+  display: flex;
+  height: 80vh;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.option p {
+  transform: scale(7);
+}
+
+/* lower sectionk */
+.lower {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 30px;
+  gap: 10px;
+}
