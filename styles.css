@@ -1,4 +1,12 @@
 /* General Styles */
+
+/* variables */
+:root {
+  --bgColor: rgba(17, 17, 90, 0.834);
+  --squareSize: 50px;
+  --boxBorder: 1px solid lightgray;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -9,39 +17,40 @@ body {
   color: white;
   font-size: 0.8rem;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bgColor);
+  position: relative;
 }
 
-.container {
-  background-color: rgba(17, 17, 90, 0.834);
-  width: 70vw;
-  height: 100vh;
-  margin: 0 auto;
+button {
+  color: var(--bgColor);
+  font-size: 1rem;
+  border-radius: 10px;
 }
 
 /* Top section */
 .top {
-  border: 1px solid lightgray;
+  border: var(--boxBorder);
   display: flex;
   gap: 10px;
   padding: 10px;
   width: 500px;
   margin: 20px auto;
+  border-radius: 5px;
 }
 
 .top .items {
   flex-grow: 2;
-  font-weight: bold;
-  margin: auto;
 }
 
 .top .items p {
+  font-weight: bold;
   font-size: 1.05rem;
   margin: 8px;
 }
 
 .top .box {
   background-color: white;
-  color: rgba(17, 17, 90, 0.834);
+  color: var(--bgColor);
   text-align: center;
   width: 120px;
   height: 90px;
@@ -59,20 +68,66 @@ body {
 /* Main Section */
 main {
   display: flex;
-  height: 70vh;
+  height: 40vh;
   justify-content: space-evenly;
   align-items: center;
   padding: 0 100px;
 }
 
 .option p {
-  transform: scale(7);
+  font-size: 60px;
+  background-color: aliceblue;
+  display: flex;
+  padding: 20px 30px;
+  border: 20px rgba(7, 101, 6, 0.947) solid;
+  border-radius: 80px;
 }
 
-/* lower sectionk */
-.lower {
+.right .option p {
+  border: 20px rgba(101, 6, 84, 0.947) solid;
+}
+
+.middle {
   display: flex;
-  justify-content: flex-end;
-  margin-right: 30px;
-  gap: 10px;
+  flex-direction: column;
+}
+
+.middle p {
+  font-size: 2rem;
+  font-weight: bolder;
+}
+
+.middle button {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+/* choices section */
+.choices {
+  width: 300px;
+  font-size: 2rem;
+  text-align: center;
+  border: var(--boxBorder);
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.choices button {
+  margin-top: 5px;
+  /* border-top: 1px red solid; */
+  padding: 10px;
+}
+
+/* lower section */
+.lower {
+  position: fixed;
+  bottom: 20px;
+  right: 40.5vw;
+}
+
+.lower button {
+  padding: 10px;
+  margin-left: 10px;
 }
