@@ -9,27 +9,36 @@ const playbtn = document.querySelector("#play");
 const rockbtn = document.querySelector("#rock");
 const paperbtn = document.querySelector("#paper");
 const scissorsbtn = document.querySelector("scissors");
-const middleEle = document.querySelector(".middle");
-const option = document.querySelector(".p-option");
+const middleField = document.querySelector(".middle");
+const playerEmoji = document.querySelector(".p-option").querySelector("p");
 const choices = document.querySelector(".choices");
-const compChoice = document.querySelector("#c-choice");
+const compEmoji = document.querySelector("#c-choice");
 
-// creating elements for inserting on a page
+const pScore = document.querySelector(".p-score").querySelector(".score");
+const cScore = document.querySelector(".c-score").querySelector(".score");
+
+const rulesbtn = document.querySelector("#rules");
+const resetbtn = document.querySelector("#reset");
+
+// Pre-made elements
 let resultMessage = document.createElement("p");
+let selected = "";
+let playerEmojiContent = "";
+let compEmojiContent = "";
 
 // Listening for events
 choices.addEventListener("click", function (e) {
-  const selected = e.target;
+  selected = e.target;
 
   // 1. displaying selected item
   if (selected.textContent === "Rock") {
-    option.querySelector("p").textContent = "✊";
+    playerEmoji.textContent = "✊";
   }
   if (selected.textContent === "Paper") {
-    option.querySelector("p").textContent = "🖐️";
+    playerEmoji.textContent = "🖐️";
   }
   if (selected.textContent === "Scissors") {
-    option.querySelector("p").textContent = "✌️";
+    playerEmoji.textContent = "✌️";
   }
 });
 
@@ -40,33 +49,41 @@ playbtn.addEventListener("click", () => {
   const randomChoice = choose(compChoices);
 
   if (randomChoice === "rock") {
-    compChoice.textContent = "✊";
+    compEmoji.textContent = "✊";
   }
   if (randomChoice === "paper") {
-    compChoice.textContent = "🖐️";
+    compEmoji.textContent = "🖐️";
   }
   if (randomChoice === "scissors") {
-    compChoice.textContent = "✌️";
+    compEmoji.textContent = "✌️";
   }
 
   // 2. choosing who won
-  const playerEmojiChoice = option.querySelector("p").textContent;
-  const compEmojiChoice = compChoice.textContent;
+  playerEmojiContent = playerEmoji.textContent;
+  compEmojiContent = compEmoji.textContent;
 
   if (
-    (playerEmojiChoice === "✊" && compEmojiChoice === "✌️") ||
-    (playerEmojiChoice === "🖐️" && compEmojiChoice === "✊") ||
-    (playerEmojiChoice === "✌️" && compEmojiChoice === "🖐️")
+    (playerEmojiContent === "✊" && compEmojiContent === "✌️") ||
+    (playerEmojiContent === "🖐️" && compEmojiContent === "✊") ||
+    (playerEmojiContent === "✌️" && compEmojiContent === "🖐️")
   ) {
     resultMessage.textContent = "You Won!";
-  } else if (playerEmojiChoice === compEmojiChoice) {
+    pScore.textContent = Number(pScore.textContent) + 1;
+  } else if (playerEmojiContent === compEmojiContent) {
     resultMessage.textContent = "It's a tie!";
   } else {
     resultMessage.textContent = "You lost!";
+    cScore.textContent = Number(pScore.textContent) + 1;
   }
   // adding resultMessage to a display block to be seen
-  middleEle.insertBefore(resultMessage, playbtn);
+  middleField.insertBefore(resultMessage, playbtn);
+});
 
-  // inspecting
-  console.log(randomChoice);
+// when player reset data
+resetbtn.addEventListener("click", () => {
+  // resetting data
+  pScore.textContent = cScore.textContent = 0;
+  playerEmoji.textContent = "✊";
+  compEmoji.textContent = "🧐";
+  middleField.removeChild(resultMessage);
 });
