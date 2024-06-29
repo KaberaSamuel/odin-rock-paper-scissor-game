@@ -1,95 +1,58 @@
-// global variables
-const choices = ["rock", "paper", "scissors"];
-let humanScores = 0;
-let computerScores = 0;
-
-// function for generating random choice
-const getComputerchoice = function () {
-  const random = Math.trunc(Math.random() * 3);
-  const computerChoice = choices[random];
-  return computerChoice;
+// Function for randomly choosing inside an array
+const choose = function (arr) {
+  const randomIndex = Math.trunc(Math.random() * 3);
+  return arr[randomIndex];
 };
 
-// function for getting human choice
-const getHumanChoice = function () {
-  let running = true;
-  while (running) {
-    let humanChoice = prompt(
-      `Make your choice among: 'rock', 'paper', 'scissors' `
-    );
-    humanChoice = humanChoice.toLowerCase();
-    if (choices.includes(humanChoice)) {
-      running = false;
-      return humanChoice;
-    } else alert("please make a valid choice");
+// Selecting Elements
+const playbtn = document.querySelector("#play");
+const rockbtn = document.querySelector("#rock");
+const paperbtn = document.querySelector("#paper");
+const scissorsbtn = document.querySelector("scissors");
+const middleEle = document.querySelector(".middle");
+const option = document.querySelector(".p-option");
+const choices = document.querySelector(".choices");
+const compchoice = document.querySelector("#c-choice");
+
+// creating elements for inserting on a page
+let resultMessage = document.createElement("p");
+
+/* Experimenting
+const doc = document.querySelector("body");
+doc.addEventListener("click", (e) => {
+  console.log(e.target, e.target.textContent);
+});
+*/
+
+// Listening for events
+choices.addEventListener("click", function (e) {
+  const selected = e.target;
+
+  // 1. displaying selected item
+  if (selected.textContent === "Rock") {
+    option.querySelector("p").textContent = "✊";
   }
-};
-
-// function for playing a single round
-const playRound = function (computer, human) {
-  console.log(`Computer: ${computer}
-Human: ${human}`);
-
-  if (computer === human) {
-    console.log("it's a draw");
-  } else {
-    if (
-      (computer === "rock" && human === "paper") ||
-      (computer === "paper" && human === "scissors") ||
-      (computer === "scissors" && human === "rock")
-    ) {
-      console.log(`You won, ${human} beats ${computer}`);
-      humanScores++;
-    } else {
-      console.log(`you lost, ${computer} beats ${human}`);
-      computerScores++;
-    }
+  if (selected.textContent === "Paper") {
+    option.querySelector("p").textContent = "🖐️";
   }
-
-  console.log(`Scores[human: ${humanScores}, computer: ${computerScores}]`);
-};
-
-// function for playing inside the game
-const playing = function () {
-  for (let i = 1; i < 6; i++) {
-    console.log(`Round ${i}`);
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerchoice();
-    playRound(computerSelection, humanSelection);
-    console.log();
+  if (selected.textContent === "Scissors") {
+    option.querySelector("p").textContent = "✌️";
   }
+});
 
-  if (humanScores === computerScores) {
-    console.log(`It's a draw, you both got equal scores!`);
-  } else {
-    if (humanScores > computerScores) {
-      console.log(
-        `You won the game, with ${
-          humanScores - computerScores
-        } mark(s) ahead of the computer`
-      );
-    } else {
-      console.log(
-        `You lost the game, with ${
-          computerScores - humanScores
-        } mark(s) behind the computer`
-      );
-    }
+// If play btn is played
+playbtn.addEventListener("click", () => {
+  // 1. choosing randomly computer choice
+  const compChoices = ["rock", "paper", "scissors"];
+  const randomChoice = choose(compChoices);
+
+  if (randomChoice === "rock") {
+    compchoice.textContent = "✊";
   }
-};
-
-// function for the whole game
-const playGame = function () {
-  playing();
-
-  const userAnswer = prompt("do you still want to play ? yes or no");
-  if (userAnswer === "yes") {
-    console.log();
-    console.log("Starting again");
-    playing();
-  } else {
-    console.log("Thanks for playing");
+  if (randomChoice === "paper") {
+    compchoice.textContent = "🖐️";
   }
-};
-
-playGame();
+  if (randomChoice === "scissors") {
+    compchoice.textContent = "✌️";
+  }
+});

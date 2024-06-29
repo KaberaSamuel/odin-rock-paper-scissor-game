@@ -74,16 +74,19 @@ main {
   padding: 0 100px;
 }
 
-.option p {
+.p-option p {
   font-size: 60px;
   background-color: aliceblue;
-  display: flex;
   padding: 30px;
   border: 20px rgba(7, 101, 6, 0.947) solid;
   border-radius: 100px;
 }
 
 .right .option p {
+  font-size: 60px;
+  background-color: aliceblue;
+  padding: 30px;
+  border-radius: 100px;
   border: 20px rgba(101, 6, 84, 0.947) solid;
 }
 
@@ -99,7 +102,7 @@ main {
 
 .middle button {
   margin-top: 10px;
-  padding: 10px;
+  padding: 10px 20px;
   font-size: 1rem;
 }
 
