@@ -12,17 +12,10 @@ const scissorsbtn = document.querySelector("scissors");
 const middleEle = document.querySelector(".middle");
 const option = document.querySelector(".p-option");
 const choices = document.querySelector(".choices");
-const compchoice = document.querySelector("#c-choice");
+const compChoice = document.querySelector("#c-choice");
 
 // creating elements for inserting on a page
 let resultMessage = document.createElement("p");
-
-/* Experimenting
-const doc = document.querySelector("body");
-doc.addEventListener("click", (e) => {
-  console.log(e.target, e.target.textContent);
-});
-*/
 
 // Listening for events
 choices.addEventListener("click", function (e) {
@@ -42,17 +35,38 @@ choices.addEventListener("click", function (e) {
 
 // If play btn is played
 playbtn.addEventListener("click", () => {
-  // 1. choosing randomly computer choice
+  // 1. choosing and displaying computer's choice
   const compChoices = ["rock", "paper", "scissors"];
   const randomChoice = choose(compChoices);
 
   if (randomChoice === "rock") {
-    compchoice.textContent = "✊";
+    compChoice.textContent = "✊";
   }
   if (randomChoice === "paper") {
-    compchoice.textContent = "🖐️";
+    compChoice.textContent = "🖐️";
   }
   if (randomChoice === "scissors") {
-    compchoice.textContent = "✌️";
+    compChoice.textContent = "✌️";
   }
+
+  // 2. choosing who won
+  const playerEmojiChoice = option.querySelector("p").textContent;
+  const compEmojiChoice = compChoice.textContent;
+
+  if (
+    (playerEmojiChoice === "✊" && compEmojiChoice === "✌️") ||
+    (playerEmojiChoice === "🖐️" && compEmojiChoice === "✊") ||
+    (playerEmojiChoice === "✌️" && compEmojiChoice === "🖐️")
+  ) {
+    resultMessage.textContent = "You Won!";
+  } else if (playerEmojiChoice === compEmojiChoice) {
+    resultMessage.textContent = "It's a tie!";
+  } else {
+    resultMessage.textContent = "You lost!";
+  }
+  // adding resultMessage to a display block to be seen
+  middleEle.insertBefore(resultMessage, playbtn);
+
+  // inspecting
+  console.log(randomChoice);
 });
