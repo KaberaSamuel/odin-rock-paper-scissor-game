@@ -5,6 +5,7 @@ const choose = function (arr) {
 };
 
 // Selecting Elements
+const body = document.querySelector("body");
 const playbtn = document.querySelector("#play");
 const rockbtn = document.querySelector("#rock");
 const paperbtn = document.querySelector("#paper");
@@ -19,6 +20,7 @@ const cScore = document.querySelector(".c-score").querySelector(".score");
 
 const rulesbtn = document.querySelector("#rules");
 const resetbtn = document.querySelector("#reset");
+const rulesSection = document.querySelector("#rules-section");
 
 // Pre-made elements
 let resultMessage = document.createElement("p");
@@ -86,4 +88,10 @@ resetbtn.addEventListener("click", () => {
   playerEmoji.textContent = "✊";
   compEmoji.textContent = "🧐";
   middleField.removeChild(resultMessage);
+});
+
+// listening for rules btn
+rulesbtn.addEventListener("click", () => {
+  // a. displaying and closing rules
+  rulesSection.classList.toggle("hidden");
 });
